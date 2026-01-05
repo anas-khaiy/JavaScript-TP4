@@ -1,0 +1,25 @@
+<%- include('../partials/header') %>
+
+    <section class="hero">
+        <h1>Bienvenue à la Bibliothèque</h1>
+        <p>Gérez vos auteurs et vos livres facilement avec notre interface intuitive.</p>
+        <div class="cta-buttons">
+            <a href="/auteurs" class="btn btn-primary">Voir les auteurs</a>
+            <a href="/livres" class="btn btn-secondary">Voir les livres</a>
+        </div>
+    </section>
+
+    <section class="stats">
+        <div class="stat-card">
+            <h3>Gestion des Auteurs</h3>
+            <p>Ajoutez, modifiez ou consultez les biographies des écrivains.</p>
+            <a href="/auteurs/ajouter" class="btn btn-small">Ajouter un auteur</a>
+        </div>
+        <div class="stat-card">
+            <h3>Gestion des Livres</h3>
+            <p>Gérez votre catalogue de livres et leur disponibilité.</p>
+            <a href="/livres/ajouter" class="btn btn-small">Ajouter un livre</a>
+        </div>
+    </section>
+
+    <%- include('../partials/footer') %>

@@ -1,0 +1,67 @@
+<%- include('../../partials/header') %>
+
+    <div class="page-header">
+        <h1>
+            <%= title %>
+        </h1>
+        <a href="/livres/ajouter" class="btn btn-primary">Ajouter un livre</a>
+    </div>
+
+    <% if (typeof searchTerm !=='undefined' && searchTerm) { %>
+        <p>Résultats pour : "<strong>
+                <%= searchTerm %>
+            </strong>"</p>
+        <% } %>
+
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Titre</th>
+                            <th>Auteur</th>
+                            <th>Genre</th>
+                            <th>Année</th>
+                            <th>Disponibilité</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% livres.forEach(livre=> { %>
+                            <tr>
+                                <td><strong>
+                                        <%= livre.titre %>
+                                    </strong></td>
+                                <td>
+                                    <%= livre.auteur_prenom %>
+                                        <%= livre.auteur_nom %>
+                                </td>
+                                <td>
+                                    <%= livre.genre %>
+                                </td>
+                                <td>
+                                    <%= livre.annee_publication %>
+                                </td>
+                                <td>
+                                    <span class="badge <%= livre.disponible ? 'badge-success' : 'badge-danger' %>">
+                                        <%= livre.disponible ? 'Disponible' : 'Indisponible' %>
+                                    </span>
+                                </td>
+                                <td>
+                                    <a href="/livres/<%= livre.id %>" class="btn-icon">👁️</a>
+                                    <a href="/livres/<%= livre.id %>/modifier" class="btn-icon">✏️</a>
+                                    <form action="/livres/<%= livre.id %>/supprimer" method="POST"
+                                        style="display:inline;" onsubmit="return confirm('Supprimer ce livre ?')">
+                                        <button type="submit" class="btn-icon btn-delete">🗑️</button>
+                                    </form>
+                                </td>
+                            </tr>
+                            <% }) %>
+                    </tbody>
+                </table>
+            </div>
+
+            <% if (livres.length===0) { %>
+                <p class="no-results">Aucun livre trouvé.</p>
+                <% } %>
+
+                    <%- include('../../partials/footer') %>

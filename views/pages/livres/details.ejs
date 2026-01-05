@@ -1,0 +1,55 @@
+<%- include('../../partials/header') %>
+
+    <div class="details-container">
+        <div class="details-header">
+            <h1>
+                <%= livre.titre %>
+            </h1>
+            <div class="actions">
+                <a href="/livres/<%= livre.id %>/modifier" class="btn btn-secondary">Modifier</a>
+                <form action="/livres/<%= livre.id %>/supprimer" method="POST" style="display:inline;"
+                    onsubmit="return confirm('Supprimer ce livre ?')">
+                    <button type="submit" class="btn btn-danger">Supprimer</button>
+                </form>
+            </div>
+        </div>
+
+        <div class="book-meta">
+            <p>Par <strong><a href="/auteurs/<%= livre.auteur_id %>">
+                        <%= livre.auteur_prenom %>
+                            <%= livre.auteur_nom %>
+                    </a></strong></p>
+            <div class="badge-row">
+                <span class="badge badge-info">
+                    <%= livre.genre %>
+                </span>
+                <span class="badge <%= livre.disponible ? 'badge-success' : 'badge-danger' %>">
+                    <%= livre.disponible ? 'Disponible' : 'Indisponible' %>
+                </span>
+            </div>
+        </div>
+
+        <div class="info-grid">
+            <div class="info-item">
+                <strong>Année :</strong>
+                <%= livre.annee_publication %>
+            </div>
+            <div class="info-item">
+                <strong>ISBN :</strong>
+                <%= livre.isbn %>
+            </div>
+        </div>
+
+        <div class="resume">
+            <h3>Résumé</h3>
+            <p>
+                <%= livre.resume || 'Aucun résumé disponible.' %>
+            </p>
+        </div>
+
+        <div class="mt-20">
+            <a href="/livres" class="btn btn-secondary">Retour au catalogue</a>
+        </div>
+    </div>
+
+    <%- include('../../partials/footer') %>

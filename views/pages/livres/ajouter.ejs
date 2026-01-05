@@ -1,0 +1,56 @@
+<%- include('../../partials/header') %>
+
+    <h1>Ajouter un Livre</h1>
+
+    <form action="/livres/ajouter" method="POST" class="main-form">
+        <div class="form-group">
+            <label for="titre">Titre</label>
+            <input type="text" id="titre" name="titre" required>
+        </div>
+
+        <div class="form-group">
+            <label for="auteur_id">Auteur</label>
+            <select id="auteur_id" name="auteur_id" required>
+                <option value="">-- Sélectionner un auteur --</option>
+                <% auteurs.forEach(auteur=> { %>
+                    <option value="<%= auteur.id %>">
+                        <%= auteur.prenom %>
+                            <%= auteur.nom %>
+                    </option>
+                    <% }) %>
+            </select>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group">
+                <label for="annee_publication">Année de publication</label>
+                <input type="number" id="annee_publication" name="annee_publication">
+            </div>
+            <div class="form-group">
+                <label for="genre">Genre</label>
+                <input type="text" id="genre" name="genre">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="isbn">ISBN</label>
+            <input type="text" id="isbn" name="isbn">
+        </div>
+
+        <div class="form-group">
+            <label for="resume">Résumé</label>
+            <textarea id="resume" name="resume" rows="4"></textarea>
+        </div>
+
+        <div class="form-group checkbox-group">
+            <input type="checkbox" id="disponible" name="disponible" checked>
+            <label for="disponible">Disponible</label>
+        </div>
+
+        <div class="form-actions">
+            <button type="submit" class="btn btn-primary">Ajouter au catalogue</button>
+            <a href="/livres" class="btn btn-secondary">Annuler</a>
+        </div>
+    </form>
+
+    <%- include('../../partials/footer') %>

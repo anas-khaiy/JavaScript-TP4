@@ -1,0 +1,59 @@
+<%- include('../../partials/header') %>
+
+    <div class="details-container">
+        <div class="details-header">
+            <h1>
+                <%= auteur.prenom %>
+                    <%= auteur.nom %>
+            </h1>
+            <div class="actions">
+                <a href="/auteurs/<%= auteur.id %>/modifier" class="btn btn-secondary">Modifier</a>
+                <form action="/auteurs/<%= auteur.id %>/supprimer" method="POST" style="display:inline;"
+                    onsubmit="return confirm('Confirmer la suppression ?')">
+                    <button type="submit" class="btn btn-danger">Supprimer</button>
+                </form>
+            </div>
+        </div>
+
+        <div class="info-grid">
+            <div class="info-item">
+                <strong>Nationalité :</strong>
+                <%= auteur.nationalite %>
+            </div>
+            <div class="info-item">
+                <strong>Né le :</strong> <span class="format-date">
+                    <%= auteur.date_naissance %>
+                </span>
+            </div>
+        </div>
+
+        <div class="biographie">
+            <h3>Biographie</h3>
+            <p>
+                <%= auteur.biographie || 'Aucune biographie disponible.' %>
+            </p>
+        </div>
+
+        <hr>
+
+        <h3>Livres de cet auteur</h3>
+        <% if (livres.length> 0) { %>
+            <ul class="book-list">
+                <% livres.forEach(livre=> { %>
+                    <li>
+                        <a href="/livres/<%= livre.id %>">
+                            <%= livre.titre %>
+                        </a> (<%= livre.annee_publication %>)
+                    </li>
+                    <% }) %>
+            </ul>
+            <% } else { %>
+                <p>Cet auteur n'a pas encore de livres enregistrés.</p>
+                <% } %>
+
+                    <div class="mt-20">
+                        <a href="/auteurs" class="btn btn-secondary">Retour à la liste</a>
+                    </div>
+    </div>
+
+    <%- include('../../partials/footer') %>
